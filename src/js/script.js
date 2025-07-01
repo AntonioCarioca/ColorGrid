@@ -20,6 +20,27 @@ function formatarCor(cor) {
     return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
 }
 
+function setFormato(novoFormato) {
+    formato = novoFormato;  
+
+    formatoBtns.forEach( btn => {
+        const ativo = btn.dataset.formato === formato;
+        btn.classList.toggle('ativo', ativo);
+        btn.disabled = ativo;
+    });
+
+    const squares = document.querySelectorAll('.square');
+    squares.forEach((square, index) => {
+        const cor = cores[index];
+        const novaCor = formatarCor(cor);
+        square.style.backgroundColor = novaCor;
+
+        const input = square.querySelector('.value-label');
+        input.value = novaCor;
+    });
+}
+
+
 function gerarGrids() {
     grid.innerHTML = '';
     cores = [];
@@ -53,4 +74,5 @@ function gerarGrids() {
     }
 }
 
+setFormato(formato);
 gerarGrids();
