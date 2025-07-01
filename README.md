@@ -1,16 +1,15 @@
-# 🎨 ColorGrid
+# ![img](src/images/favicon32x32.png) ColorGrid
 
-**ColorGrid** Pro is an interactive 4x4 grid of customizable colors. Edit hexadecimal codes, copy with a click, rearrange with drag and drop, and explore visual effects with a mouseover. Perfect for creating palettes and testing color combinations in a practical way.
+**ColorGrid** is an 5x4 grid of customizable colors. Edit hexadecimal codes, copy with a click. Perfect for creating palettes and testing color combinations in a practical way.
 
 ---
 
 ## ✨ Features
 
-- ✅ Live color editing via hexadecimal code
-- ✅ Quick color copy with one click
-- ✅ Smooth mouse-over zooming
-- ✅ Drag & Drop to rearrange the squares
-- ✅ Intuitive and responsive interface
+- ✅ Editing live colors by their code value.
+- ✅ Quick color copy with one click.
+- ✅ Intuitive and responsive interface.
+- ✅ supported color formats: HEX, RGB, RGBA.
 
 ---
 
@@ -18,7 +17,7 @@
 
 - HTML5
 - CSS3 (grid layout + visual effects)
-- JavaScript (DOM, clipboard API, drag & drop)
+- JavaScript (DOM, clipboard API)
 
 ---
 
@@ -31,9 +30,11 @@
    ```
 2. Open the `index.html` file in any modern browser.
 
+3. Or access: [ColorGrid](https://colorgrid.pages.dev/)
+
 ## Screen Capture
 
-![Captura](src/images/img.png)
+![Captura](src/images/screen.png)
 
 ## 🧠 Inspiration
 
@@ -45,4 +46,4 @@ This project is licensed under the [MIT License](https://opensource.org/license/
 
 ## 📬 Contact
 
-If you have any suggestions, ideas or would like to contribute, please get in touch or open an issue!
+If you have any suggestions, ideas or would like to contribute, please get in touch or open an issu e!
