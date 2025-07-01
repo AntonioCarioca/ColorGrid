@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade de Cores Editável</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>ColorGrid</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.png" type="image/png">
 </head>
 
 <body>
-    <div class="grid" id="colorGrid"></div>
-    <script src="js/script.js" type="text/javascript" charset="utf-8" async defer></script>
+    <header>
+        <strong class="title">ColorGrid</strong>
+        <a href="https://github.com/AntonioCarioca/ColorGrid" target="_blank">
+            <img src="github-mark-white (1).svg" alt="">
+        </a>
+    </header>
+    <div class="controls">
+        <button onclick="gerarGrids()">Gerar Cores</button>
+        <button class="formato-btn" data-formato="hex" onclick="setFormato('hex')">HEX</button>
+        <button class="formato-btn" data-formato="rgb" onclick="setFormato('rgb')">RGB</button>
+        <button class="formato-btn" data-formato="rgba" onclick="setFormato('rgba')">RGBA</button>
+    </div>
+    <div class="grid" id="grid"></div>
+    <script src="script.js" type="text/javascript" charset="utf-8" async defer></script>
 </body>
 
 </html>
