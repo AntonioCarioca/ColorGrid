@@ -21,9 +21,9 @@ function formatarCor(cor) {
 }
 
 function setFormato(novoFormato) {
-    formato = novoFormato;  
+    formato = novoFormato;
 
-    formatoBtns.forEach( btn => {
+    formatoBtns.forEach(btn => {
         const ativo = btn.dataset.formato === formato;
         btn.classList.toggle('ativo', ativo);
         btn.disabled = ativo;
@@ -67,6 +67,16 @@ function gerarGrids() {
         const copyLabel = document.createElement('div');
         copyLabel.className = 'copy-btn';
         copyLabel.textContent = 'Copy!';
+
+        // Copiar valor ao clicar no quadrado
+        square.addEventListener('click', () => {
+            navigator.clipboard.writeText(valueLabel.value).then(() => {
+                copyLabel.textContent = 'Copiado!';
+                setTimeout(() => {
+                    copyLabel.textContent = 'Copy!';
+                }, 1000);
+            });
+        });
 
         square.appendChild(copyLabel);
         square.appendChild(valueLabel);
