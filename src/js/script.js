@@ -83,6 +83,49 @@ function aplicarEdicaoCor(index, square, input) {
     input.value = corFormatada;
 }
 
+// Exporta a paleta atual como imagem PNG
+function exportarPaletaPNG() {
+    if (!cores.length) return;
+
+    const colunas = 5;
+    const linhas = 4;
+    const larguraCard = 320;
+    const alturaCard = 220;
+    const largura = colunas * larguraCard;
+    const altura = linhas * alturaCard;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = largura;
+    canvas.height = altura;
+
+    const contexto = canvas.getContext('2d');
+    if (!contexto) return;
+
+    contexto.font = 'bold 28px sans-serif';
+    contexto.textAlign = 'center';
+    contexto.textBaseline = 'middle';
+
+    cores.forEach((cor, index) => {
+        const x = (index % colunas) * larguraCard;
+        const y = Math.floor(index / colunas) * alturaCard;
+        const corFormatada = formatarCor(cor);
+
+        // Pinta o card de fundo
+        contexto.fillStyle = corFormatada;
+        contexto.fillRect(x, y, larguraCard, alturaCard);
+
+        // Escolhe texto claro/escuro para contraste
+        const luminancia = (0.299 * cor.r + 0.587 * cor.g + 0.114 * cor.b);
+        contexto.fillStyle = luminancia > 160 ? '#111111' : '#ffffff';
+        contexto.fillText(corFormatada.toUpperCase(), x + larguraCard / 2, y + alturaCard / 2);
+    });
+
+    const link = document.createElement('a');
+    link.download = `colorgrid-paleta-${new Date().toISOString().slice(0, 10)}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+}
+
 // Atualiza formato ativo e re-renderiza os cards já existentes
 function setFormato(novoFormato) {
     formato = novoFormato;
