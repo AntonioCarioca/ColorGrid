@@ -1,49 +1,71 @@
 # ![img](src/images/favicon32x32.png) ColorGrid
 
-**ColorGrid** is an 5x4 grid of customizable colors. Edit hexadecimal codes, copy with a click. Perfect for creating palettes and testing color combinations in a practical way.
+**ColorGrid** is a 5x4 color palette generator with editable cards, format switching (HEX, RGB, RGBA), one-click copy, and PNG export.
 
 ---
 
-## ✨ Features
+## Live Demo
 
-- ✅ Editing live colors by their code value.
-- ✅ Quick color copy with one click.
-- ✅ Intuitive and responsive interface.
-- ✅ supported color formats: HEX, RGB, RGBA.
+[Open ColorGrid](https://colorgrid.pages.dev/)
 
----
+## Preview
 
-## 📦 Technologies used
+![ColorGrid Screenshot](src/images/screen.png)
+
+## Features
+
+- Generate a 5x4 grid with 20 random colors
+- Edit each color directly on the card
+- Switch between HEX, RGB, and RGBA without regenerating colors
+- Copy any color value with one click
+- Export the current palette as PNG
+- Responsive and simple interface
+
+## Technologies
 
 - HTML5
-- CSS3 (grid layout + visual effects)
-- JavaScript (DOM, clipboard API)
+- CSS3
+- JavaScript
+- Clipboard API
+- Canvas API
 
----
+## Project Structure
 
-## 🚀 How to use
+src/
+
+├── index.html
+
+├── css/style.css
+
+├── js/script.js
+
+└── images/
+
+## How to use
 
 1. Clone or download this repository:
    ```bash
-   git clone https://github.com/seu-usuario/colorgrid-pro.git
+   git clone https://github.com/AntonioCarioca/ColorGrid.git
 
    ```
 2. Open the `index.html` file in any modern browser.
 
-3. Or access: [ColorGrid](https://colorgrid.pages.dev/)
-
-## Screen Capture
-
-![Captura](src/images/screen.png)
-
-## 🧠 Inspiration
+## Inspiration
 
 This project was created as a visual tool to explore color palettes in a simple, interactive and efficient way.
 
-## 📄 License
+## Releases
+
+See the project releases for version history.
+
+## Contributing
+
+Contributions are welcome. Feel free to open an issue or submit a pull request.
+
+## License
 
 This project is licensed under the [MIT License](https://opensource.org/license/mit).
 
-## 📬 Contact
+## Contact
 
 If you have any suggestions, ideas or would like to contribute, please get in touch or open an issu e!
