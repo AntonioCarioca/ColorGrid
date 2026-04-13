@@ -1,10 +1,12 @@
+// Elementos principais da interface
 const grid = document.getElementById('grid');
 const formatoBtns = document.querySelectorAll('.formato-btn');
 
-let ativo = null;
+// Estado global da aplicação
 let cores = [];
 let formato = 'hex';
 
+// Gera uma cor aleatória em RGBA
 function gerarCor() {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
@@ -13,6 +15,7 @@ function gerarCor() {
     return { r, g, b, a };
 }
 
+// Converte o objeto de cor para o formato selecionado (HEX, RGB ou RGBA)
 function formatarCor(cor) {
     const { r, g, b, a } = cor;
     if (formato === 'rgb') return `rgb(${r}, ${g}, ${b})`;
@@ -20,6 +23,67 @@ function formatarCor(cor) {
     return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
 }
 
+// Limita um número dentro de um intervalo
+function limitar(valor, min, max) {
+    return Math.min(max, Math.max(min, valor));
+}
+
+// Tenta converter texto em um objeto de cor válido
+function parseCor(valor) {
+    const texto = valor.trim();
+
+    const hex = texto.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+    if (hex) {
+        let v = hex[1];
+        if (v.length === 3) v = v.split('').map(char => char + char).join('');
+        return {
+            r: parseInt(v.slice(0, 2), 16),
+            g: parseInt(v.slice(2, 4), 16),
+            b: parseInt(v.slice(4, 6), 16),
+            a: 1
+        };
+    }
+
+    const rgb = texto.match(/^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/i);
+    if (rgb) {
+        return {
+            r: limitar(parseInt(rgb[1], 10), 0, 255),
+            g: limitar(parseInt(rgb[2], 10), 0, 255),
+            b: limitar(parseInt(rgb[3], 10), 0, 255),
+            a: 1
+        };
+    }
+
+    const rgba = texto.match(/^rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*((?:0|1)(?:\.\d+)?)\s*\)$/i);
+    if (rgba) {
+        return {
+            r: limitar(parseInt(rgba[1], 10), 0, 255),
+            g: limitar(parseInt(rgba[2], 10), 0, 255),
+            b: limitar(parseInt(rgba[3], 10), 0, 255),
+            a: limitar(parseFloat(rgba[4]), 0, 1)
+        };
+    }
+
+    return null;
+}
+
+// Aplica o valor digitado no input, atualizando card e estado global
+function aplicarEdicaoCor(index, square, input) {
+    const corEditada = parseCor(input.value);
+    if (!corEditada) {
+        input.classList.add('invalid');
+        input.value = formatarCor(cores[index]);
+        return;
+    }
+
+    input.classList.remove('invalid');
+    cores[index] = corEditada;
+    const corFormatada = formatarCor(corEditada);
+    square.style.backgroundColor = corFormatada;
+    input.value = corFormatada;
+}
+
+// Atualiza formato ativo e re-renderiza os cards já existentes
 function setFormato(novoFormato) {
     formato = novoFormato;
 
@@ -30,6 +94,7 @@ function setFormato(novoFormato) {
     });
 
     const squares = document.querySelectorAll('.square');
+    // Sincroniza fundo e texto de cada card com o novo formato
     squares.forEach((square, index) => {
         const cor = cores[index];
         const novaCor = formatarCor(cor);
@@ -41,6 +106,7 @@ function setFormato(novoFormato) {
 }
 
 
+// Cria os 20 cards de cor e configura os eventos de cópia
 function gerarGrids() {
     grid.innerHTML = '';
     cores = [];
@@ -59,16 +125,22 @@ function gerarGrids() {
         const valueLabel = document.createElement('input');
         valueLabel.className = 'value-label';
         valueLabel.value = corFormatada;
-        valueLabel.readOnly = true;
+        valueLabel.spellcheck = false;
         // Adicionar proteção ao input
         valueLabel.addEventListener('click', e => e.stopPropagation());
+        valueLabel.addEventListener('input', () => valueLabel.classList.remove('invalid'));
+        valueLabel.addEventListener('keydown', e => {
+            e.stopPropagation();
+            if (e.key === 'Enter') valueLabel.blur();
+        });
+        valueLabel.addEventListener('blur', () => aplicarEdicaoCor(i, square, valueLabel));
 
         // Criar label de COPY
         const copyLabel = document.createElement('div');
         copyLabel.className = 'copy-btn';
         copyLabel.textContent = 'Copy!';
 
-        // Copiar valor ao clicar no quadrado
+        // Copia o valor da cor e mostra feedback temporário
         square.addEventListener('click', () => {
             navigator.clipboard.writeText(valueLabel.value).then(() => {
                 copyLabel.textContent = 'Copiado!';
@@ -84,5 +156,6 @@ function gerarGrids() {
     }
 }
 
+// Inicialização da interface
 setFormato(formato);
 gerarGrids();

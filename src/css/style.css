@@ -1,3 +1,4 @@
+/* Estrutura base da página e tema geral */
 html,
 body {
     margin: 0;
@@ -10,6 +11,7 @@ body {
     flex-direction: column;
 }
 
+/* Barra superior com título e link */
 header {
     background: #000;
     color: #fff;
@@ -19,6 +21,7 @@ header {
     align-items: center;
 }
 
+/* Área de ações (geração e seleção de formato) */
 .controls {
     background: #111;
     padding: 8px 16px;
@@ -27,6 +30,7 @@ header {
     flex-wrap: wrap;
 }
 
+/* Estilo padrão dos botões */
 button {
     background: #222;
     border: none;
@@ -35,21 +39,25 @@ button {
     cursor: pointer;
 }
 
+/* Estado de hover quando o botão está habilitado */
 button:hover:not(:disabled) {
     background: #444;
 }
 
+/* Botão de formato atualmente ativo */
 button.ativo {
     background: #008CBA;
     font-weight: bold;
     cursor: default;
 }
 
+/* Estado visual dos botões desabilitados */
 button:disabled {
     opacity: 0.6;
     cursor: default;
 }
 
+/* Grade principal com 20 cards (5x4) */
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -58,6 +66,7 @@ button:disabled {
     flex-grow: 1;
 }
 
+/* Card individual de cor */
 .square {
     position: relative;
     display: flex;
@@ -68,6 +77,7 @@ button:disabled {
     text-transform: uppercase;
 }
 
+/* Campo com o valor textual da cor */
 .value-label {
     border: none;
     background-color: transparent;
@@ -80,6 +90,16 @@ button:disabled {
     width: 70%;
 }
 
+.value-label:focus {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+}
+
+.value-label.invalid {
+    color: #ff9f9f;
+}
+
+/* Selo de ação de cópia exibido no hover */
 .copy-btn {
     display: none;
     position: absolute;
@@ -91,10 +111,12 @@ button:disabled {
     font-size: 0.8vw;
 }
 
+/* Exibe o botão de cópia ao passar o mouse no card */
 .square:hover .copy-btn {
     display: block;
 }
 
+/* Estilo do título no cabeçalho */
 .title {
     font-size: 1.5rem;
     font-weight: bold;
