@@ -122,3 +122,50 @@ button:disabled {
     font-size: 1.5rem;
     font-weight: bold;
 }
+
+@media (max-width: 768px) {
+    body {
+        padding: 16px;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .color-card {
+        height: 120px;
+    }
+
+    .value-label {
+        font-size: 14px;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .color-card {
+        height: 110px;
+    }
+
+    h1 {
+        font-size: 28px;
+        text-align: center;
+    }
+}
