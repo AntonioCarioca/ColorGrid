@@ -81,6 +81,8 @@ function aplicarEdicaoCor(index, square, input) {
     const corFormatada = formatarCor(corEditada);
     square.style.backgroundColor = corFormatada;
     input.value = corFormatada;
+    const textColor = getContrastColor(corFormatada);
+    input.style.color = textColor;
 }
 
 // Exporta a paleta atual como imagem PNG
@@ -169,6 +171,10 @@ function gerarGrids() {
         valueLabel.className = 'value-label';
         valueLabel.value = corFormatada;
         valueLabel.spellcheck = false;
+
+        const textColor = getContrastColor(corFormatada);
+        valueLabel.style.color = textColor;
+
         // Adicionar proteção ao input
         valueLabel.addEventListener('click', e => e.stopPropagation());
         valueLabel.addEventListener('input', () => valueLabel.classList.remove('invalid'));
@@ -197,6 +203,19 @@ function gerarGrids() {
         square.appendChild(valueLabel);
         grid.appendChild(square);
     }
+}
+
+function getContrastColor(hex) {
+    hex = hex.replace("#", "");
+
+    const r = parseInt(hex.substr(0, 2), 16);
+    const g = parseInt(hex.substr(2, 2), 16);
+    const b = parseInt(hex.substr(4, 2), 16);
+
+    // Fórmula de luminância
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+
+    return luminance > 186 ? "#000000" : "#ffffff";
 }
 
 // Inicialização da interface
