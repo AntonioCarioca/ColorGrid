@@ -231,6 +231,42 @@ function getContrastColor(hex) {
     return luminance > 186 ? "#000000" : "#ffffff";
 }
 
+// Remove todas as cores da tela e limpa o estado global
+function limparPaleta() {
+    cores = [];
+
+    const cards = document.querySelectorAll('.square');
+
+    cards.forEach(card => {
+        const valueLabel = card.querySelector('.value-label');
+
+        card.style.backgroundColor = '#2d3436';
+        valueLabel.value = '';
+        valueLabel.style.color = '#ffffff';
+        valueLabel.style.textShadow = 'none';
+    });
+}
+
+// Copia todas as cores atuais da paleta
+function copiarTodasAsCores() {
+    if (!cores.length) {
+        alert('Nenhuma cor para copiar.');
+        return;
+    }
+
+    const texto = cores
+        .map(cor => formatarCor(cor).toUpperCase())
+        .join('\n');
+
+    navigator.clipboard.writeText(texto)
+        .then(() => {
+            alert('Todas as cores foram copiadas!');
+        })
+        .catch(() => {
+            alert('Erro ao copiar as cores.');
+        });
+}
+
 // Inicialização da interface
 setFormato(formato);
 gerarGrids();
