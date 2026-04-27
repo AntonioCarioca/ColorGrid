@@ -187,14 +187,27 @@ function gerarGrids() {
         // Criar label de COPY
         const copyLabel = document.createElement('div');
         copyLabel.className = 'copy-btn';
-        copyLabel.textContent = 'Copy!';
+        copyLabel.textContent = 'Copiar!';
 
         // Copia o valor da cor e mostra feedback temporário
         square.addEventListener('click', () => {
-            navigator.clipboard.writeText(valueLabel.value).then(() => {
-                copyLabel.textContent = 'Copiado!';
+        navigator.clipboard.writeText(valueLabel.value)
+            .then(() => {
+                const originalValue = valueLabel.value;
+
+                valueLabel.value = "Copiado!";
+
                 setTimeout(() => {
-                    copyLabel.textContent = 'Copy!';
+                    valueLabel.value = originalValue;
+                }, 1000);
+            })
+            .catch(() => {
+                const originalValue = valueLabel.value;
+
+                valueLabel.value = "Erro ao copiar";
+
+                setTimeout(() => {
+                    valueLabel.value = originalValue;
                 }, 1000);
             });
         });
