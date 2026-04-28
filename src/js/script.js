@@ -191,25 +191,25 @@ function gerarGrids() {
 
         // Copia o valor da cor e mostra feedback temporário
         square.addEventListener('click', () => {
-        navigator.clipboard.writeText(valueLabel.value)
-            .then(() => {
-                const originalValue = valueLabel.value;
+            navigator.clipboard.writeText(valueLabel.value)
+                .then(() => {
+                    const originalValue = valueLabel.value;
 
-                valueLabel.value = "Copiado!";
+                    valueLabel.value = "Copiado!";
 
-                setTimeout(() => {
-                    valueLabel.value = originalValue;
-                }, 1000);
-            })
-            .catch(() => {
-                const originalValue = valueLabel.value;
+                    setTimeout(() => {
+                        valueLabel.value = originalValue;
+                    }, 1000);
+                })
+                .catch(() => {
+                    const originalValue = valueLabel.value;
 
-                valueLabel.value = "Erro ao copiar";
+                    valueLabel.value = "Erro ao copiar";
 
-                setTimeout(() => {
-                    valueLabel.value = originalValue;
-                }, 1000);
-            });
+                    setTimeout(() => {
+                        valueLabel.value = originalValue;
+                    }, 1000);
+                });
         });
 
         square.appendChild(copyLabel);
@@ -265,6 +265,60 @@ function copiarTodasAsCores() {
         .catch(() => {
             alert('Erro ao copiar as cores.');
         });
+}
+
+function baixarArquivo(nomeArquivo, conteudo, tipo) {
+    const blob = new Blob([conteudo], { type: tipo });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = nomeArquivo;
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
+
+function exportarJSON() {
+    if (!cores.length) {
+        alert('Nenhuma cor para exportar.');
+        return;
+    }
+
+    const dados = {
+        name: 'ColorGrid Palette',
+        format: formato,
+        colors: cores.map((cor, index) => ({
+            id: index + 1,
+            hex: '#' + [cor.r, cor.g, cor.b].map(x => x.toString(16).padStart(2, '0')).join('')
+            .toUpperCase(),
+            rgb: `rgb(${cor.r}, ${cor.g}, ${cor.b})`,
+            rgba: `rgb(${cor.r}, ${cor.g}, ${cor.b}, ${cor.a})`
+        }))
+    };
+
+    baixarArquivo(
+        'colorgrid-palette-'+formato+'.json',
+        JSON.stringify(dados, null, 4),
+        'application/json'
+    );
+}
+
+function exportarCSS() {
+    if (!cores.length) {
+        alert('Nenhuma cor para exportar.');
+        return;
+    }
+
+    const colors = ':root {\n' + cores.map((cor, index) => `    --color-${index+1}: ` +
+        '#' + [cor.r, cor.g, cor.b].map(x => x.toString(16).padStart(2, '0')).join('') + ';')
+        .join('\n') + '\n}'
+
+    baixarArquivo(
+        'colorgrid-palette.css',
+        colors,
+        'text/css'
+    );
 }
 
 // Inicialização da interface
