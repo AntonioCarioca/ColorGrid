@@ -1,71 +1,102 @@
-# ![img](src/images/favicon32x32.png) ColorGrid
+# 🎨 ColorGrid
 
-**ColorGrid** is a 5x4 color palette generator with editable cards, format switching (HEX, RGB, RGBA), one-click copy, and PNG export.
+![GitHub release](https://img.shields.io/github/v/release/AntonioCarioca/ColorGrid?style=for-the-badge)
+![GitHub license](https://img.shields.io/github/license/AntonioCarioca/ColorGrid?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/AntonioCarioca/ColorGrid?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/AntonioCarioca/ColorGrid?style=for-the-badge)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/AntonioCarioca/ColorGrid/release.yml?style=for-the-badge)
 
----
+A modern and interactive color palette generator built with pure JavaScript.
 
-## Live Demo
+Generate beautiful color grids, customize colors, copy values, and export palettes in multiple formats.
 
-[Open ColorGrid](https://colorgrid.pages.dev/)
+## 🌐 Live Demo
 
-## Preview
+🔗 [Access ColorGrid](https://colorgrid.pages.dev/)
 
-![ColorGrid Screenshot](src/images/screen.png)
+## 📸 Preview
 
-## Features
+![ColorGrid Preview](./preview.png)
 
-- Generate a 5x4 grid with 20 random colors
-- Edit each color directly on the card
-- Switch between HEX, RGB, and RGBA without regenerating colors
-- Copy any color value with one click
-- Export the current palette as PNG
-- Responsive and simple interface
+## 🚀 Features
 
-## Technologies
+- 🎲 Random color generation (grid layout)
+- 🎯 Supports HEX, RGB, and RGBA formats
+- ✏️ Edit colors directly in the grid
+- 📋 Copy individual colors
+- 📦 Copy all colors at once
+- 🧹 Clear palette
+- 🖼️ Export palette as PNG
+- 📄 Export palette as JSON
+- 🎨 Export palette as CSS variables
+- 📱 Responsive design (mobile-friendly)
+- 🎯 Automatic text contrast for better readability
+
+## 🛠️ Technologies
 
 - HTML5
 - CSS3
-- JavaScript
-- Clipboard API
-- Canvas API
+- JavaScript (Vanilla)
 
-## Project Structure
+## 📦 Installation
 
-src/
+Clone the repository:
 
-├── index.html
+```bash
+git clone https://github.com/AntonioCarioca/ColorGrid.git
+```
 
-├── css/style.css
+Open the project:
 
-├── js/script.js
+```
+cd ColorGrid
+```
 
-└── images/
+Run locally:
 
-## How to use
+```
+open index.html
+```
 
-1. Clone or download this repository:
-   ```bash
-   git clone https://github.com/AntonioCarioca/ColorGrid.git
+## 🎮 Usage
 
-   ```
-2. Open the `index.html` file in any modern browser.
+1. Click "**Gerar Cores**" to generate a new palette
+2. Click on a color to copy it
+3. Switch between **HEX / RGB / RGBA** formats
+4. Use:
+   - **Limpar Paleta** to reset
+   - **Copiar Tudo** to copy all colors
+   - **Exportar PNG / JSON / CSS** to download
+   
+## 📁 Project Structure
 
-## Inspiration
+```
+ColorGrid/
+├── src/
+│   ├── index.html
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── CHANGELOG.md
+└── README.md
+```
 
-This project was created as a visual tool to explore color palettes in a simple, interactive and efficient way.
+## 🧠 Versioning
 
-## Releases
+This project follows **Semantic Versioning**.
 
-See the project releases for version history.
+See the [CHANGELOG](https://github.com/AntonioCarioca/ColorGrid/blob/main/CHANGELOG.md) for details.
 
-## Contributing
+## 🤝 Contributing
 
-Contributions are welcome. Feel free to open an issue or submit a pull request.
+Contributions are welcome!
 
-## License
+If you find a bug or have suggestions, feel free to open an issue.
 
-This project is licensed under the [MIT License](https://opensource.org/license/mit).
+## 📄 License
 
-## Contact
+This project is licensed under the MIT License.
 
-If you have any suggestions, ideas or would like to contribute, please get in touch or open an issu e!
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!
